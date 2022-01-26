@@ -1,21 +1,23 @@
 import { useState } from 'react';
 
 function SignUpPage() {
-  const [disabled, setDisabled] = useState(true);
   const [password, setPassword] = useState('');
   const [passwordRepeat, setPasswordRepeat] = useState('');
+  let disabled = true;
 
   const onChangePassword = (event) => {
     const inputPassword = event.target.value;
     setPassword(inputPassword);
-    setDisabled(inputPassword !== passwordRepeat);
   };
 
   const onChangePasswordRepeact = (event) => {
     const inputPassword = event.target.value;
     setPasswordRepeat(inputPassword);
-    setDisabled(inputPassword !== password);
   };
+
+  if (password && passwordRepeat) {
+    disabled = password !== passwordRepeat;
+  }
 
   return (
     <div>
